@@ -1,0 +1,79 @@
+package org.view;
+
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
+import org.dao.DBConnector;
+
+
+/**
+ * Servlet implementation class Controller
+ */
+@WebServlet("/Controller")
+public class Controller extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Controller() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String request_type=(String)request.getParameter("req");
+    	System.out.println(request_type);
+    	String content=request_type;
+		request.setAttribute("content", content);
+		RequestDispatcher dispatcher;
+		dispatcher=	request.getRequestDispatcher("/index.jsp");
+	    dispatcher.forward(request, response);
+    }
+    
+    
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		// TODO Auto-generated method stub
+		    String request_type=(String)request.getAttribute("req");
+			String user=(String)request.getParameter("User");
+			String pass=(String)request.getParameter("Pass");
+			//request.setAttribute("list", list);
+			request.setAttribute("user", user);
+			request.setAttribute("pass", pass);
+			int account_number= DBConnector.isvalid(user, pass);
+		    RequestDispatcher dispatcher;
+		    // if the user and pass are incorrect
+		if(account_number==0){
+			 dispatcher=	request.getRequestDispatcher("/index.jsp");
+			 dispatcher.forward(request, response);
+		}else{
+			
+			request.getSession().setAttribute( "user", user ); 
+			request.getSession().setAttribute( "account_number", account_number );
+			
+			String content="welcome to the Online banking";
+			request.setAttribute("content", content);
+			dispatcher=	request.getRequestDispatcher("/index.jsp");
+		    dispatcher.forward(request, response);
+		 
+		
+		 
+		    }
+			return;
+		
+
+	}
+
+}

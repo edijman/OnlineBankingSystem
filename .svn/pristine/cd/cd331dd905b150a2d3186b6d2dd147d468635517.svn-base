@@ -1,0 +1,83 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"      
+       %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<%
+
+if((String)request.getSession().getAttribute("user")=="0"||(String)request.getSession().getAttribute("user")==null){
+	 request.getRequestDispatcher("login.jsp").forward(request,response);
+}
+
+%>
+<title>Home</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<script type="text/javascript" src="js/jquery-1.4.2.js" ></script>
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-replace.js"></script>
+<script type="text/javascript" src="js/Myriad_Pro_400.font.js"></script>
+<script type="text/javascript" src="js/Myriad_Pro_700.font.js"></script>
+<script type="text/javascript" src="js/Myriad_Pro_600.font.js"></script>
+<!--[if lt IE 9]>
+	<script type="text/javascript" src="http://info.template-help.com/files/ie6_warning/ie6_script_other.js"></script>
+	<script type="text/javascript" src="js/html5.js"></script>
+<![endif]-->
+</head>
+<body id="page1">
+<div class="main">
+<!-- header -->
+	<header>
+		<div class="wrapper">
+			<img src="/OnlineBankingSystem/images/banner.png"  align="middle"/>
+			<form id="search" action="LogoutServlet" method="post">
+				<div class="bg">
+				    
+					<input class="input" type="hidden" value="logout">
+					<input type="submit" class="submit" value="log-out">
+
+				</div>
+			</form> 
+			
+			
+		</div>
+		
+		<span style="font-size:160%">
+			Welcome <b style="color:green"><%=request.getSession().getAttribute("user") %></b> with Account#:<b style="color:green"><%=request.getSession().getAttribute("account_number") %></b>
+			</span>
+			<br/>
+		
+		<nav>
+			<ul id="menu">
+				<li class="alpha" id="menu_active"><a href="/OnlineBankingSystem/Controller?req=balance"><span><span>Balance</span></span></a></li>
+				<li><a href="/OnlineBankingSystem/Controller?req=bill"><span><span>Pay Bills</span></span> </a></li>
+				<li><a href="/OnlineBankingSystem/Controller?req=simulator"><span><span>Request/simulator</span></span></a></li>
+				<li class="omega"><a href="/OnlineBankingSystem/Controller?req=status"><span><span>Status</span></span></a></li>
+			</ul>
+		</nav>
+		<div class="wrapper">
+			
+		</div>
+	</header><div class="ic">More Website Templates at TemplateMonster.com!</div>
+<!-- / header -->
+<!-- content -->
+	<section id="content">
+		<div class="wrapper">
+			<%=(String)request.getAttribute("content") %>
+		</div>
+	</section>
+<!-- / content -->
+<!-- footer -->
+	<footer>
+		Copyright&copy; 2015, Maysam, Idris 
+	</footer>
+<!-- / footer -->
+</div>
+<script type="text/javascript"> Cufon.now(); </script>
+</body>
+</html>
