@@ -20,6 +20,8 @@ if((String)request.getSession().getAttribute("user")=="0"||(String)request.getSe
 <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
 <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<link rel="stylesheet" href="/css/bootstrap/css/bootstrap.css"">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script type="text/javascript" src="js/jquery-1.4.2.js" ></script>
 <script type="text/javascript" src="js/cufon-yui.js"></script>
 <script type="text/javascript" src="js/cufon-replace.js"></script>
@@ -42,11 +44,8 @@ if((String)request.getSession().getAttribute("user")=="0"||(String)request.getSe
 				    
 					<input class="input" type="hidden" value="logout">
 					<input type="submit" class="submit" value="log-out">
-
 				</div>
 			</form> 
-			
-			
 		</div>
 		
 		<span style="font-size:160%">
@@ -74,16 +73,19 @@ if((String)request.getSession().getAttribute("user")=="0"||(String)request.getSe
 <!-- content -->
 	<section id="content">
 		<div class="wrapper">
-		<% if(request.getParameter("req")!=null&&request.getParameter("req").equals("balance")){ %> 
+		<% if(request.getParameter("req")!=null&&request.getParameter("req").equals("balance")){ %>
+			<table align="center">
+			<tr> 
 			<ul>
 				<li> <%=(String)request.getAttribute("balance_content") %> </li>
 				<li> <%=(String)request.getAttribute("savings_content") %> </li>
 				<li> <%=(String)request.getAttribute("cheqings_content") %> </li>
-
 			</ul>
+			</tr>
+			</table>
 		<%} %>
 		<% if(request.getParameter("req")!=null&&request.getParameter("req").equals("transfer")){ %> 
-			<form id="form1" name="form1" action="Controller" method="post">
+			<form id="form1" class="form-inline" name="form1" action="Controller" method="post">
   			<p>
 			    <label for="amount">Amount to transfer</label>
 			    <input type="text" name="amount" id="amount" />
