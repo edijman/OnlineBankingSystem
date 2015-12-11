@@ -6,6 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="/OnlineBankingSystem/static/css/login.css" />
+<link rel="stylesheet" href="/css/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script type="text/javascript" src="/OnlineBankingSystem/static/js/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="/OnlineBankingSystem/static/js/loginSliders.js"></script>
 
@@ -26,7 +28,7 @@
 		    <div class="content">
 				<input id="username" name="User" type="text" class="input username" value="Username" onfocus="this.value=''" required>
 				<input id="password" name="Pass" type="password" class="input password" value="Password" onfocus="this.value=''" required>
-				<input id="name" name="name" type="hidden" value="login"\>
+				<input id="name" name="name" type="hidden" value="login">
 		    </div>
 		   
 		    <div class="footer">
